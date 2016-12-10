@@ -2,6 +2,7 @@
   "name": "curso-react-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://angelmmiguel.github.io/curso-react-app",
   "devDependencies": {
     "gh-pages-deploy": "^0.4.2",
     "react-scripts": "0.8.3"
@@ -25,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "clear": "rimraf build",
+    "clear-deploy": "rimraf build src README.md package.json public",
     "deploy": "gh-pages-deploy"
   }
 }
