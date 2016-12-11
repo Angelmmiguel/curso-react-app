@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 // Importamos los componentes
 import SearchForm from '../../components/SearchForm';
@@ -10,20 +10,15 @@ import RepositoryList from '../../components/RepositoryList';
  * tipo presential.
  */
 class SearchContainer extends React.Component {
-  /**
-   * Props del component
-   */
-  static propTypes = {
-    example: PropTypes.object
-  };
-
+  // Inicializamos el estado
   constructor(props) {
     super(props);
 
     this.state = {
       search: '',
       loading: false,
-      results: []
+      results: [],
+      query: false
     }
   }
 
@@ -47,7 +42,7 @@ class SearchContainer extends React.Component {
       })
       .then(res => {
         if (!res.error) {
-          this.setState({ results: res.body.items, loading: false });
+          this.setState({ results: res.body.items, loading: false, query: true });
         } else {
           // TODO: Mostrar los errores
           console.err('Error with search')
@@ -62,7 +57,8 @@ class SearchContainer extends React.Component {
     return <section>
       <SearchForm onSubmit={ this.onSubmit } />
       <RepositoryList repositories={ this.state.results }
-        loading={ this.state.loading } search={ this.state.search }/>
+        loading={ this.state.loading } search={ this.state.search }
+        query={ this.state.query } />
     </section>
   }
 }

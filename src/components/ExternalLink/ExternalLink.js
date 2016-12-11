@@ -13,14 +13,21 @@ class ExternalLink extends React.PureComponent {
       PropTypes.string,
       PropTypes.node,
       PropTypes.element
-    ]).isRequired
+    ]).isRequired,
+    className: PropTypes.string
   };
+
+  // Por defecto, el link no tiene ninguna clase
+  static defaultProps = {
+    className: ''
+  }
 
   /**
    * Renderizamos el link
    */
   render() {
-    return <a href={ this.props.to } rel="noopener" target="_blank">
+    return <a href={ this.props.to } className={ this.props.className }
+      rel="noopener" target="_blank">
       { this.props.children }
     </a>;
   }

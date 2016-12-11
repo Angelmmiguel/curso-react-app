@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 
 // Componentes
 import ExternalLink from '../ExternalLink';
+import FormattedDate from '../FormattedDate';
+import GithubAvatar from '../GithubAvatar';
 
 /**
  * Muestra una release de un repositorio
@@ -25,9 +27,21 @@ class ReleaseRow extends React.PureComponent {
    * Render the ReleaseRow component
    */
   render() {
-    return <tr>
-      <td><ExternalLink to={ this.props.release.html_url }>{ this.releaseName }</ExternalLink></td>
-      <td><date>{ this.props.release.published_at }</date></td>
+    let release = this.props.release;
+
+    return <tr className="ReleaseRow">
+      <td><ExternalLink to={ release.html_url }>{ this.releaseName }</ExternalLink></td>
+      <td><GithubAvatar author={ release.author } /></td>
+      <td><FormattedDate date={ release.published_at } /></td>
+      { /* Podemos aplicar estilos inline usando objetos */}
+      <td style={ { width: '185px' } }>
+        <ExternalLink to={ release.zipball_url } className="ReleaseRow__Button button button-primary">
+          .zip
+        </ExternalLink>
+        <ExternalLink to={ release.tarball_url } className="ReleaseRow__Button button">
+          .tgz
+        </ExternalLink>
+      </td>
     </tr>;
   }
 }

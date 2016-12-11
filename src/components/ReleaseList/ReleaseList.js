@@ -31,17 +31,18 @@ class ReleaseList extends React.PureComponent {
     return <HintMessage>{ text }</HintMessage>;
   }
 
-  /**
-   * Render the ReleaseList component
-   */
-  render() {
-    return <div>
-      { this.renderMessage() }
-      <table className="u-full-width">
+  // Renderizamos la tabla si no estamos cargando resultados
+  renderTable() {
+    if (this.props.loading || this.props.releases.length === 0) {
+      return null;
+    } else {
+      return <table className="u-full-width">
         <thead>
           <tr>
             <th>Name</th>
+            <th>Author</th>
             <th>Release date</th>
+            <th>Download</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +50,17 @@ class ReleaseList extends React.PureComponent {
             <ReleaseRow release={ release } key={ release.id } />
           )}
         </tbody>
-      </table>
+      </table>;
+    }
+  }
+
+  /**
+   * Render the ReleaseList component
+   */
+  render() {
+    return <div>
+      { this.renderMessage() }
+      { this.renderTable() }
     </div>;
   }
 }

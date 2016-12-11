@@ -1,0 +1,9 @@
+.GithubAvatar__Image {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin-right: .8em;
+  vertical-align: middle;
+}
