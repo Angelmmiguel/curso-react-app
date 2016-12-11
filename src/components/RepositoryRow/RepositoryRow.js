@@ -24,7 +24,7 @@ class RepositoryRow extends React.PureComponent {
       <td>{ repo.full_name }</td>
       <td>{ repo.stargazers_count }</td>
       <td>
-        <Link to={ `/${repo.fullname}`}>Releases</Link>
+        <Link to={ `/${repo.full_name}`}>Releases</Link>
       </td>
     </tr>
   }
