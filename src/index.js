@@ -12,7 +12,7 @@ import DetailsContainer from './containers/DetailsContainer';
 
 ReactDOM.render(
   <Router history={ hashHistory }>
-    <Route path="" component={ BaseContainer }>
+    <Route path="/" component={ BaseContainer }>
       <Route path=":user/:repo" component={ DetailsContainer }/>
     </Route>
   </Router>,
