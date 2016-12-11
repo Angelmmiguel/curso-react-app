@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
 
-// Estilos
-import './RepositoryList.css';
-
 // Componentes
 import RepositoryRow from '../RepositoryRow';
+import HintMessage from '../HintMessage';
 
 /**
  * Muestra los repositorios en una lista.
@@ -30,7 +28,7 @@ class RepositoryList extends React.PureComponent {
       text = 'Type the name of a repository and hit enter';
     }
     // Return p
-    return <p className="RepositoryList__Message">{ text }</p>;
+    return <HintMessage>{ text }</HintMessage>;
   }
 
   /**
@@ -38,7 +36,7 @@ class RepositoryList extends React.PureComponent {
    */
   render() {
     return <section className="RepositoryList">
-      <h3>Results</h3>
+      <h2>Results</h2>
       { this.renderMessage() }
       <table className="u-full-width">
         <tbody>
