@@ -6,13 +6,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Importamos los componentes
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import BaseContainer from './containers/BaseContainer';
 import DetailsContainer from './containers/DetailsContainer';
 
 ReactDOM.render(
-  <Router history={ browserHistory }>
-    <Route path="/" component={ BaseContainer }>
+  <Router history={ hashHistory }>
+    <Route path="" component={ BaseContainer }>
       <Route path=":user/:repo" component={ DetailsContainer }/>
     </Route>
   </Router>,
