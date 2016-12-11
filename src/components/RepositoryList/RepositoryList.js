@@ -66,7 +66,6 @@ class RepositoryList extends React.PureComponent {
    */
   render() {
     return <section className="RepositoryList">
-      <h2>Results</h2>
       { this.renderMessage() }
       { this.renderTable() }
     </section>;
