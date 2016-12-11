@@ -50,6 +50,7 @@ class SearchForm extends React.PureComponent {
       <input type="text" className="u-full-width" name="Search"
         placeholder="react, rails, webpack..." onChange={ this.onChange }
         id="searchInput" />
+      <p className="align-center"><input className="button-primary" type="submit" value="Search"/></p>
     </form>;
   }
 }

@@ -31,7 +31,7 @@ class RepositoryList extends React.PureComponent {
         We could't find any repositories matching <b>{ this.props.search }</b>. Try another terms please.
       </span>;
     } else {
-      text = 'Type the name of a repository and hit enter';
+      text = 'Type the name of a repository and click search';
     }
     // Return p
     return <HintMessage>{ text }</HintMessage>;
