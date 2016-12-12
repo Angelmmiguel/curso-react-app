@@ -12,7 +12,9 @@ class SearchForm extends React.PureComponent {
    */
   static propTypes = {
     // Necesitamos el callback de onSubmit
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    // Valor actual
+    search: PropTypes.string.isRequired
   }
 
   // Iniciamos el estado
@@ -49,7 +51,7 @@ class SearchForm extends React.PureComponent {
       <label htmlFor="searchInput">Search a repository</label>
       <input type="text" className="u-full-width" name="Search"
         placeholder="react, rails, webpack..." onChange={ this.onChange }
-        id="searchInput" />
+        id="searchInput" defaultValue={ this.props.search }/>
       <p className="align-center"><input className="button-primary" type="submit" value="Search"/></p>
     </form>;
   }

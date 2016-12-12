@@ -16,7 +16,7 @@ class RepositoryList extends React.PureComponent {
     loading: PropTypes.bool.isRequired,
     search: PropTypes.string.isRequired,
     // Este parámetro indica si se ha realizado una peticion previamente
-    query: PropTypes.bool.isRequired
+    queried: PropTypes.bool.isRequired
   }
 
   renderMessage() {
@@ -26,7 +26,7 @@ class RepositoryList extends React.PureComponent {
       text = <span>Searching results for <b>{ this.props.search }</b></span>;
     } else if (l > 0) {
       text = <span>We found <b>{ l }</b> repositories for <b>{ this.props.search }</b></span>;
-    } else if (l === 0 && this.props.query) {
+    } else if (l === 0 && this.props.queried) {
       text = <span>
         We could't find any repositories matching <b>{ this.props.search }</b>. Try another terms please.
       </span>;

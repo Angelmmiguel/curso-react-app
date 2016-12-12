@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+
+// Redux
+import { connect } from 'react-redux';
+import { startSearch, successSearch } from '../../actions/actions';
 
 // Importamos los componentes
 import SearchForm from '../../components/SearchForm';
@@ -10,16 +14,24 @@ import RepositoryList from '../../components/RepositoryList';
  * tipo presential.
  */
 class SearchContainer extends React.Component {
+  // Definimos los props que nos deben de llegar
+  static propTypes = {
+    // Dispatch es la funcion que utilizamos para lanzar acciones contra el store.
+    // Esta función la proporciona connect.
+    dispatch: PropTypes.func.isRequired,
+    // Valores del estado
+    loading: PropTypes.bool.isRequired,
+    results: PropTypes.arrayOf(PropTypes.object).isRequired,
+    search: PropTypes.string.isRequired,
+    queried: PropTypes.bool.isRequired
+  }
+
   // Inicializamos el estado
+  // eslint-disable-next-line
   constructor(props) {
     super(props);
-
-    this.state = {
-      search: '',
-      loading: false,
-      results: [],
-      query: false
-    }
+    // Ya no necesitamos el estado! Todo está en los props
+    // this.state = { ... }
   }
 
   /**
@@ -27,8 +39,8 @@ class SearchContainer extends React.Component {
    * Recibe como parámetro el campo que debe de buscar.
    */
   onSubmit = value => {
-    // Almacenamos el valor
-    this.setState({ search: value, loading: true });
+    // Lanzamos la accion!
+    this.props.dispatch(startSearch(value));
     // Realizamos la petición a la API
     fetch(`https://api.github.com/search/repositories?q=${ value }`)
       .then(res => {
@@ -42,10 +54,11 @@ class SearchContainer extends React.Component {
       })
       .then(res => {
         if (!res.error) {
-          this.setState({ results: res.body.items, loading: false, query: true });
+          // Almacenamos el resultado en redux
+          this.props.dispatch(successSearch(res.body.items));
         } else {
           // TODO: Mostrar los errores
-          console.err('Error with search')
+          console.error('Error with search')
         }
       })
   }
@@ -55,13 +68,24 @@ class SearchContainer extends React.Component {
    */
   render() {
     return <section>
-      <SearchForm onSubmit={ this.onSubmit } />
-      <RepositoryList repositories={ this.state.results }
-        loading={ this.state.loading } search={ this.state.search }
-        query={ this.state.query } />
+      <SearchForm onSubmit={ this.onSubmit } search={ this.props.search } />
+      <RepositoryList repositories={ this.props.results }
+        loading={ this.props.loading } search={ this.props.search }
+        queried={ this.props.queried } />
     </section>
   }
 }
 
-// Export the class
-export default SearchContainer;
+// Esta funcion nos convierte valores del estado de Redux a props del
+// componente
+const mapStateToProps = state => {
+  // En este caso nos interesan todas las variables del estado, por lo que podríamos
+  // devolver una copia de State. Las separamos y las volvemos así a modo
+  // ilustrativo
+  let { search, loading, results, queried } = state;
+  return { search, loading, results, queried };
+}
+
+// Connect es un HOC! Modifica los props de nuestro componente para incluir
+// dispatch, así como los valores que obtengamos del estado
+export default connect(mapStateToProps)(SearchContainer);
