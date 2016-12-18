@@ -69,7 +69,7 @@ class SearchContainer extends React.Component {
   render() {
     return <section>
       <SearchForm onSubmit={ this.onSubmit } search={ this.props.search } />
-      <RepositoryList repositories={ this.props.results }
+      <RepositoryList data={ this.props.results } total={ this.props.results.length }
         loading={ this.props.loading } search={ this.props.search }
         queried={ this.props.queried } />
     </section>

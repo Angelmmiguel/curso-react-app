@@ -67,8 +67,9 @@ class DetailsContainer extends React.Component {
   render() {
     return <section>
       <h2>Releases of <b>{ this.repoName }</b></h2>
-      <ReleaseList releases={ this.state.releases } loading={ this.state.loading }
-        repoName={ this.repoName }/>
+      <ReleaseList data={ this.state.releases } loading={ this.state.loading }
+        repoName={ this.repoName } total={ this.state.releases.length }
+        itemsPerPage={ 5 }/>
     </section>;
   }
 }
