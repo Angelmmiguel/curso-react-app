@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 // Componentes
 import ExternalLink from '../ExternalLink';
