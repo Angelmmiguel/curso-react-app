@@ -43,3 +43,23 @@ svg {
 .align-center {
   text-align: center;
 }
+
+/* Link */
+.Navigation {
+  padding: 1em 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2em;
+}
+
+.Link {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  padding: 0.5em 1em;
+}
+
+.Link--active {
+  color: white;
+  background-color: black;
+}
