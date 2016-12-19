@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
-import { startSearch, successSearch } from '../../actions/actions';
+import { search } from '../../actions/actions';
 
 // Importamos los componentes
 import SearchForm from '../../components/SearchForm';
@@ -40,19 +40,7 @@ class SearchContainer extends React.Component {
    */
   onSubmit = value => {
     // Lanzamos la accion!
-    this.props.dispatch(startSearch(value));
-    // Realizamos la petición a la API
-    fetch(`https://api.github.com/search/repositories?q=${ value }`)
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        this.props.dispatch(successSearch(res.items));
-      })
-      .catch(err => {
-        // Mostramos el error por consola
-        console.log(err);
-      })
+    this.props.dispatch(search(value));
   }
 
   /**
