@@ -27,9 +27,15 @@ const reducer = (state = initialState, action) => {
     /**
      * La búsqueda ha terminado.
      */
-    case 'SEARCH_SUCCESS': {
+    case 'SEARCH': {
+      let results = [];
+
+      if (!action.error) {
+        results = action.payload;
+      }
+
       return Object.assign({}, state, {
-        loading: false, results: action.results, queried: true
+        loading: false, queried: true, results
       });
     }
     default: {
