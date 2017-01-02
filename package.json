@@ -4,8 +4,9 @@
   "private": true,
   "homepage": "https://angelmmiguel.github.io/curso-react-app",
   "devDependencies": {
-    "enzyme": "^2.6.0",
+    "enzyme": "^2.7.0",
     "gh-pages": "^0.12.0",
+    "react-addons-test-utils": "^15.4.1",
     "react-scripts": "0.8.3"
   },
   "dependencies": {
