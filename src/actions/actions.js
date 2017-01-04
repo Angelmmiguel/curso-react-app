@@ -19,13 +19,13 @@ export const successSearch = results => {
   }
 }
 
-export const search = search =>
+export const search = value =>
   dispatch => {
     // Lanzamos la acción startSearch
-    dispatch(startSearch(search));
+    dispatch(startSearch(value));
 
     // Realizamos la búsqueda
-    fetch(`https://api.github.com/search/repositories?q=${ search }`)
+    fetch(`https://api.github.com/search/repositories?q=${ value }`)
       .then(res => {
         return res.json()
       })
