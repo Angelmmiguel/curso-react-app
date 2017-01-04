@@ -27,20 +27,14 @@ export const search = search =>
     // Realizamos la búsqueda
     fetch(`https://api.github.com/search/repositories?q=${ search }`)
       .then(res => {
-        return res.json().then(json => {
-          return Promise.resolve({
-            body: json,
-            status: res.status,
-            error: (res.status < 200 || res.status >= 300)
-          })
-        });
+        return res.json()
       })
       .then(res => {
-        if (!res.error) {
-          // Almacenamos el resultado en redux
-          dispatch(successSearch(res.body.items));
-        } else {
-          console.error('Error with search');
-        }
+        // Almacenamos el resultado en redux
+        dispatch(successSearch(res.items));
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false });
       });
   }
