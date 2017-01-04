@@ -35,6 +35,5 @@ export const search = search =>
       })
       .catch(err => {
         console.log(err);
-        this.setState({ loading: false });
       });
   }
