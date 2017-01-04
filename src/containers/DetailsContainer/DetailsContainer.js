@@ -37,22 +37,14 @@ class DetailsContainer extends React.Component {
   componentDidMount() {
     fetch(`https://api.github.com/repos/${ this.repoName }/releases`)
       .then(res => {
-        return res.json().then(json => {
-          return Promise.resolve({
-            body: json,
-            status: res.status,
-            error: (res.status < 200 || res.status >= 300)
-          })
-        });
+        return res.json()
       })
       .then(res => {
-        if (!res.error) {
-          this.setState({ releases: res.body, loading: false });
-        } else {
-          // TODO: Mostrar los errores
-          console.log('Error fetching releases');
-          this.setState({ loading: false });
-        }
+        this.setState({ releases: res, loading: false });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ loading: false });
       })
   }
 

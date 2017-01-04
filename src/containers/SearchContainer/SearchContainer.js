@@ -44,22 +44,14 @@ class SearchContainer extends React.Component {
     // Realizamos la petición a la API
     fetch(`https://api.github.com/search/repositories?q=${ value }`)
       .then(res => {
-        return res.json().then(json => {
-          return Promise.resolve({
-            body: json,
-            status: res.status,
-            error: (res.status < 200 || res.status >= 300)
-          })
-        });
+        return res.json();
       })
       .then(res => {
-        if (!res.error) {
-          // Almacenamos el resultado en redux
-          this.props.dispatch(successSearch(res.body.items));
-        } else {
-          // TODO: Mostrar los errores
-          console.error('Error with search')
-        }
+        this.props.dispatch(successSearch(res.items));
+      })
+      .catch(err => {
+        // Mostramos el error por consola
+        console.log(err);
       })
   }
 
